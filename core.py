@@ -24,7 +24,7 @@ def genera_serie(tipologia_bolletta,numero_utenze,name,output=False):
         bolletta_mono = pd.read_excel("bolletta_mono.xlsx", header=0, index_col='Mese')
         for i in df.index:
             m = df.loc[i,'Mese']
-            df.loc[i,'bolletta'] = bolletta_mono['kWh'][m]
+            df.loc[i,'bolletta'] = bolletta_mono['kW'][m]
         
         
     elif tipologia_bolletta == 'F':
@@ -59,13 +59,13 @@ def genera_serie(tipologia_bolletta,numero_utenze,name,output=False):
             condizione2 = df['TimeSlot'] == ts
             df.loc[i,'correzione'] = df.loc[condizione1 & condizione2]['PDMF'].sum()
               
-    df['kWh'] = df[sigla]*df['bolletta']/df['correzione']*numero_utenze
+    df['kW'] = df[sigla]*df['bolletta']/df['correzione']*numero_utenze
     
     # save file.csv
     directory = './profili_generati'
     import os 
     if not os.path.exists(directory): os.makedirs(directory)
-    df['kWh'].to_csv(f"{directory}/{name}.csv")
+    df['kW'].to_csv(f"{directory}/{name}.csv")
     
     if output:
         return(df)
