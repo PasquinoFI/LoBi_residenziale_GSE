@@ -12,8 +12,10 @@ https://www.gse.it/documenti_site/Documenti%20GSE/Servizi%20per%20te/AUTOCONSUMO
 
 # Conosci i consumi di ogni mese divisi nelle 3 fasce orarie? Inseriscili nel file "bollette_tri.xlsx" e seleziona tipologia_bolletta='F'
 # Se conosci solamente i consumi totali di ogni mese (ad esempio perchè il contratto è monoorario) inseriscili in "bolletta_mono.xlsx" e seleziona tipologia_bolletta='M'
-
 tipologia_bolletta = 'F' # M/F = Monooraria/Fasce
+
+
+tipologia_utenza = 'Residential_GSE' # 'Residential_Cigre' / 'Commercial_Cigre'  / 'Industrial_Cigre'  / 'Residential_GSE' 
 numero_utenze = 1 # Se selezioni un numero X intero maggiore di uno viene generato un profilo aggregato di X utenze (uguali perchè simulate partendo dalla stessa bolletta)
 name = 'profilo esempio' # scegli un nome per la serie da generare
 
@@ -21,6 +23,6 @@ name = 'profilo esempio' # scegli un nome per la serie da generare
 # Se stai generando la serie per usarla su MESSpy copiala e incollala in input/loads
 
 import core
-core.genera_serie(tipologia_bolletta, numero_utenze, name)
+a=core.genera_serie(tipologia_bolletta, tipologia_utenza, numero_utenze, name,output=True)
 
 
