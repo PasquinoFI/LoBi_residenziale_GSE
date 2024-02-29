@@ -6,13 +6,13 @@ LoBi_standard_GSE - core
 
 ### CORE - non toccare
 
-def genera_serie(tipologia_bolletta,tipologia_utenza,numero_utenze,name,output=False):
+def genera_serie(tipologia_bolletta,numero_utenze,name,output=False):
     
     sigla = f"PDM{tipologia_bolletta}"
     
     import pandas as pd
     
-    df = pd.read_excel(f"profili_standard/{tipologia_utenza}.xlsx")
+    df = pd.read_csv(f"profilo_standard_GSE.csv")
     datetime_index = pd.date_range(start = '01-01-2021 00:00', end   = '31-12-2021 23:00', freq  = 'H')    
     df.index = datetime_index
     df['DayType'] = df.index.weekday  
